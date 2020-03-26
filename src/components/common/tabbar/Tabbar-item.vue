@@ -48,6 +48,6 @@ export default {
     text-align: center;
   }
   .red{
-    color: red;
+    color: #FF5777;
   }
 </style>

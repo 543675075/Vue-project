@@ -24,6 +24,7 @@ export default {
   methods: {
     handleClick(index){
       this.currentIndex = index
+      this.$emit('clickControl',index)
     }
   },
 }
@@ -31,11 +32,14 @@ export default {
 
 <style lang="less" scoped>
   .control{
-    margin-top: 10px;
+    
     display: flex;
+    background-color: #fff;
     .control-item{
       flex: 1;
       text-align: center;
+      padding: 10px 0 15px;
+      background-color: #fff;
     }
   }
 

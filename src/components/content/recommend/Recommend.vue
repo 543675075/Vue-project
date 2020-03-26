@@ -1,7 +1,7 @@
 <template>
   <div class="recommend">
     <div class="recommend-item" v-for="item in recommend" :key="item.sort">
-      <img :src="item.image" >
+      <img :src="item.image" @load = load>
       <span>{{item.title}}</span>
     </div>
   </div>
@@ -15,6 +15,19 @@ export default {
       type: Array,
       default: []
     }
+  },
+  data() {
+    return {
+      flag: true
+    }
+  },
+  methods: {
+   load(){
+     if(this.flag){
+       this.$emit("load")
+       this.flag = false
+     }
+   } 
   }
 }
 </script>

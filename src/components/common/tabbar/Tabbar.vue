@@ -44,6 +44,7 @@ export default {
   padding-top: 5px;
   box-sizing: border-box;
   background-color: #f6f6f6;
+  z-index: 10;
   .tabbar-item {
     position: relative;
     img,
