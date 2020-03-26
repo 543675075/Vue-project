@@ -18,7 +18,9 @@
 
 <style>
 
-  
+  #app{
+    padding-top: 50px;
+  }
   
 
 
