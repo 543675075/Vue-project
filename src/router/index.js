@@ -5,6 +5,7 @@ const Home = () => import('../views/home/Home.vue')
 const Cart = () => import('../views/cart/Cart.vue')
 const Profile = () => import('../views/profile/Profile.vue')
 const Category = () => import('../views/category/Category.vue')
+const Detail = () => import('views/detail/Detail.vue')
 
 
 
@@ -33,6 +34,10 @@ const router = new VueRouter({
       path: '/profile',
       component: Profile
     },
+    {
+      path: '/detail',
+      component: Detail
+    }
   ],
   mode: "history"
 })

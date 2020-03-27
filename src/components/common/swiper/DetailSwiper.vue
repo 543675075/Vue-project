@@ -1,7 +1,9 @@
+  
+  
 <template>
   <van-swipe :autoplay="3000" :height="h" :indicator-color="color">
     <van-swipe-item class="van-swipe-item" v-for="(item, index) in list" :key="index">
-      <img v-lazy="item.image" />
+      <img v-lazy="item" />
     </van-swipe-item>
   </van-swipe>
 </template>
@@ -14,7 +16,7 @@ Vue.use(Swipe);
 Vue.use(SwipeItem);
 Vue.use(Lazyload);
 export default {
-  name: "Swiper",
+  name: "DetailSwiper",
   props: {
     list: {
       type: Array,
@@ -24,7 +26,7 @@ export default {
       type: String,
       default: "200"
     },
-    color: {
+    color:{
       type: String,
       default: ''
     }

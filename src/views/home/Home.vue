@@ -11,7 +11,8 @@
                                                       @scrollToEnd="scrollToEnd">
 
       <!-- 轮播图 -->
-      <swiper :list="swiper" h="200" />
+      <swiper :list="swiper" h="200" color="#ff5777"/>
+       
 
       <!-- 推荐 -->
       <recommend :recommend="recommend" @load="load" />

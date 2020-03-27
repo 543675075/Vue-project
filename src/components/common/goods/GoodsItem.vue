@@ -1,5 +1,5 @@
 <template>
-  <div class='goods-item'>
+  <div class='goods-item' @click="goodsClick">
     <img :src="list.show.img" class="goods-img">
     <div class="goods-info">
       <p class="title">{{list.title}}</p>
@@ -18,7 +18,7 @@
     components: {},
     data() {
       return {
-
+        iid: ''
       };
     },
     props: {
@@ -34,7 +34,15 @@
     //监控data中的数据变化
 
     methods: {
-
+      goodsClick(){
+        this.iid = this.list.iid
+        this.$router.push({
+          path: '/detail',
+          query: {
+            iid: this.iid
+          }
+        })
+      }
     },
 
     created() {
