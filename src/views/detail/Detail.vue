@@ -18,6 +18,8 @@
       <!-- 商品推荐 -->
       <goods :goods="recommend" />
     </scroll>
+    <!-- 底部工具栏 -->
+    <bottom-bar @cartClick="cartClick" />
   </div>
 </template>
 
@@ -31,6 +33,7 @@ import GoodsShow from "./childcomponents/GoodsShow";
 import GoodsParams from "./childcomponents/GoodsParams";
 import Comment from "./childcomponents/Comment";
 import Goods from "components/common/goods/Goods";
+import BottomBar from "./childcomponents/BottomBar";
 
 import { detailData, Info, ShopInfo, recommend } from "network/detail";
 
@@ -45,19 +48,20 @@ export default {
     GoodsShow,
     GoodsParams,
     Comment,
-    Goods
+    Goods,
+    BottomBar
   },
   data() {
     return {
-      iid: "",
+      iid: "", //商品唯一id
 
-      detailSwiper: [],
+      detailSwiper: [], //轮播图
       info: {}, //商品标题销量等信息数据
-      storeInfo: {},
-      goodsShow: {},
-      params: {},
-      comment: {},
-      recommend: []
+      storeInfo: {}, //店铺信息
+      goodsShow: {}, //商品所有图片的展示
+      params: {}, //商品参数
+      comment: {}, //用户留言
+      recommend: [] //推荐商品
     };
   },
   computed: {},
@@ -70,6 +74,7 @@ export default {
       const result = res.data.result;
       //获取轮播图数据
       this.detailSwiper = result.itemInfo.topImages;
+      // console.log(this.detailSwiper)
       //创建商品标题销量等信息对象并保存
       const goodsInfo = new Info(
         result.columns,
@@ -77,6 +82,7 @@ export default {
         result.shopInfo.services
       );
       this.info = goodsInfo;
+      // console.log(this.info)
       //创建店铺对象并获取店铺相关信息保存
       const shopInfo = new ShopInfo(result.shopInfo);
       this.storeInfo = shopInfo;
@@ -87,15 +93,27 @@ export default {
       //获取评论信息
       if (result.rate.cRate != 0) {
         this.comment = result.rate.list[0];
-        console.log(this.comment);
+        // console.log(this.comment);
       }
     });
 
     recommend().then(res => {
       //获取推荐商品数据
-      this.recommend = res.data.data.list
-      console.log(this.recommend);
+      this.recommend = res.data.data.list;
+      // console.log(this.recommend);
     });
+  },
+  methods: {
+    cartClick() {
+      const cartGoodsInfo = {};
+      cartGoodsInfo.title = this.info.title;
+      cartGoodsInfo.desc = this.info.desc;
+      cartGoodsInfo.price = this.info.lowPrice;
+      cartGoodsInfo.showImg = this.detailSwiper[0];
+      cartGoodsInfo.iid = this.iid;
+      this.$store.commit("cartGoodsInfo", cartGoodsInfo);
+      // console.log(this.$store);
+    }
   }
 };
 </script>

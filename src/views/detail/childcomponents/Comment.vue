@@ -5,7 +5,7 @@
       <span>更多</span>
     </div>
     <div class="user">
-      <img :src="comment.user.avatar" alt class="user-img" />
+      <img :src="comment.user.avatar"  class="user-img" />
       <span class="user-name">{{comment.user.uname}}</span>
     </div>
     <div class="content">{{comment.content}}</div>

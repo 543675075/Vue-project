@@ -18,6 +18,8 @@ export function recommend() {
 // 商品信息
 export function Info(columns, itemInfo, services) {
   this.title = itemInfo.title
+  this.desc = itemInfo.desc
+  this.lowPrice = itemInfo.lowNowPrice
   this.price = itemInfo.price
   this.oldPrice = itemInfo.oldPrice
   this.discount = itemInfo.discountDesc
