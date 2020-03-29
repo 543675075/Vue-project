@@ -9,6 +9,11 @@ export function detailData(iid) {
   })
 }
 
+export function recommend() {
+  return request({
+    url: 'recommend'
+  })
+}
 
 // 商品信息
 export function Info(columns, itemInfo, services) {

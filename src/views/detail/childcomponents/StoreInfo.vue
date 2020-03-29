@@ -26,6 +26,9 @@
         </div>
       </div>
     </div>
+    <div class="go">
+      <span class="btn">进店逛逛</span>
+    </div>
   </div>
 </template>
 
@@ -99,6 +102,17 @@ export default {
       }
     }
   }
+}
+.go{
+  text-align: center;
+}
+.btn{
+  display: inline-block;
+  margin: 40px auto 0;
+  padding: 5px 10px;
+  background-color: #ccc;
+  text-align: center;
+  border-radius: 10px;
 }
 .high{
   background-color: red;

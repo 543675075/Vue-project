@@ -58,6 +58,7 @@ export default {
     font-size: 12px;
     border-radius: 30px;
     background-color: #ff5777;
+    color: #fff;
   }
   .info-1,.info-2{
     display: flex;
