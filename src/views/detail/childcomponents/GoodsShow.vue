@@ -9,7 +9,7 @@
       <div v-for="(item,index) in goodsShow.detailImage" :key="index">
         <p>{{item.key}}</p>
         <div v-for="(_item,_index) in item.list" :key="_index">
-          <img :src="_item" />
+          <img :src="_item" @load="imgLoad"/>
         </div>
       </div>
     </div>
@@ -24,7 +24,14 @@ export default {
       type: Object,
       default: {}
     }
-  }
+  },
+
+  methods: {
+    imgLoad(){
+      this.$emit("imgLoad")
+    }
+  },
+ 
 
 };
 </script>

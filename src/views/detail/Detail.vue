@@ -1,22 +1,22 @@
 <template >
   <div class="detail">
     <!-- 头部导航 -->
-    <detail-nav />
-    <scroll class="scroll" :probeType="3" :listenScroll="true">
+    <detail-nav @navClick="navClick" />
+    <scroll class="scroll" :probeType="3" :listenScroll="true" ref="scroll">
       <!-- 轮播图 -->
-      <detail-swiper :list="detailSwiper" h="400" color="#ff5777" />
+      <detail-swiper :list="detailSwiper" h="400" color="#ff5777" ref="swiper" />
       <!-- 商品标题销售等信息 -->
       <goods-info :info="info" />
       <!-- 店铺log名字等信息 -->
       <store-info :storeInfo="storeInfo" />
       <!-- 商品图片的展示 -->
-      <goods-show :goodsShow="goodsShow" class="goods-show" />
+      <goods-show :goodsShow="goodsShow" class="goods-show" @imgLoad="imgLoad" />
       <!-- 商品参数展示 -->
-      <goods-params :params="params" class="params" />
+      <goods-params :params="params" class="params" ref="params" />
       <!-- 评论信息 -->
-      <comment :comment="comment" />
+      <comment :comment="comment" ref="comment" />
       <!-- 商品推荐 -->
-      <goods :goods="recommend" />
+      <goods :goods="recommend" ref="recommend" />
     </scroll>
     <!-- 底部工具栏 -->
     <bottom-bar @cartClick="cartClick" />
@@ -61,7 +61,8 @@ export default {
       goodsShow: {}, //商品所有图片的展示
       params: {}, //商品参数
       comment: {}, //用户留言
-      recommend: [] //推荐商品
+      recommend: [], //推荐商品
+      offsetTop: []
     };
   },
   computed: {},
@@ -102,6 +103,20 @@ export default {
       this.recommend = res.data.data.list;
       // console.log(this.recommend);
     });
+    // this.$nextTick(()=>{
+    //   this.offsetTop.push(this.$refs.swiper.$el.offsetTop)
+    //   this.offsetTop.push(this.$refs.params.$el.offsetTop)
+    //   this.offsetTop.push(this.$refs.comment.$el.offsetTop)
+    //   this.offsetTop.push(this.$refs.recommend.$el.offsetTop)
+    // })
+  },
+  mounted() {},
+  updated() {
+    this.offsetTop = []
+    this.offsetTop.push(this.$refs.swiper.$el.offsetTop);
+    this.offsetTop.push(this.$refs.params.$el.offsetTop);
+    this.offsetTop.push(this.$refs.comment.$el.offsetTop);
+    this.offsetTop.push(this.$refs.recommend.$el.offsetTop);
   },
   methods: {
     cartClick() {
@@ -110,9 +125,21 @@ export default {
       cartGoodsInfo.desc = this.info.desc;
       cartGoodsInfo.price = this.info.lowPrice;
       cartGoodsInfo.showImg = this.detailSwiper[0];
+      cartGoodsInfo.count = null;
       cartGoodsInfo.iid = this.iid;
-      this.$store.commit("cartGoodsInfo", cartGoodsInfo);
-      // console.log(this.$store);
+      console.log(cartGoodsInfo.iid)
+      // this.$store.commit("cartGoodsInfo", cartGoodsInfo);
+      this.$store.dispatch("cartGoodsInfo",cartGoodsInfo)
+    },
+    navClick(index) {
+      console.log(this.offsetTop)
+      this.$refs.scroll.scrollTo(0,-this.offsetTop[index],500)
+    },
+    imgLoad() {
+      //    console.log(this.$refs.swiper.$el.offsetTop)
+      // console.log(this.$refs.params.$el.offsetTop)
+      // console.log(this.$refs.comment.$el.offsetTop)
+      // console.log(this.$refs.recommend.$el.offsetTop)
     }
   }
 };

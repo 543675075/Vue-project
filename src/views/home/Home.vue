@@ -106,8 +106,6 @@
 
     mounted() {
 
-      // console.log(this.$refs.control.$el.offsetTop)
-
     },
 
     methods: {

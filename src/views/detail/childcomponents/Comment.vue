@@ -1,5 +1,5 @@
 <template>
-  <div class="comment">
+  <div class="comment" v-if="Object.keys(comment).length !==0">
     <div class="header">
       <span>用户评价</span>
       <span>更多</span>
@@ -86,6 +86,7 @@ export default {
     flex-wrap: wrap;
     img{
       width: 100px;
+      height: 50px;
       padding-right: 5px;
     }
   }
