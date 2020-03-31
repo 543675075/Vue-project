@@ -2,34 +2,35 @@
   <div>
     <cart-nav />
 
-    <cart-goods :cartGoods="cartGoods" @check="itemClick" :active="active"/>
+    <cart-goods :cartGoods="cartGoods" />
+    <total :cartGoods="cartGoods" />
   </div>
 </template>
 
 <script>
 import CartNav from "./childComponents/CartNav";
 import CartGoods from "./childComponents/CartGoods";
+import Total from './childComponents/Total'
+
 export default {
   name: "Cart",
   data() {
     return {
       cartGoods: [],
-      active: false
+      index: 0
     };
   },
   components: {
     CartNav,
-    CartGoods
+    CartGoods,
+    Total
   },
   created() {
-    console.log(this.$store.state);
     this.cartGoods = this.$store.state.cartGoods;
+    
   },
   methods: {
-    itemClick(index){
-      this.active = !this.active
-      console.log(index)
-    }
+   
   },
 };
 </script>

@@ -127,7 +127,7 @@ export default {
       cartGoodsInfo.showImg = this.detailSwiper[0];
       cartGoodsInfo.count = null;
       cartGoodsInfo.iid = this.iid;
-      console.log(cartGoodsInfo.iid)
+      // console.log(cartGoodsInfo.iid)
       // this.$store.commit("cartGoodsInfo", cartGoodsInfo);
       this.$store.dispatch("cartGoodsInfo",cartGoodsInfo)
     },

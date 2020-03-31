@@ -1,8 +1,8 @@
 <template>
   <div class="cart-goods" v-if="Object.keys(cartGoods).length !=0 ">
-    <div class="cart-goods-item" v-for="(item,index) in cartGoods" :key="index">
+    <!-- <div class="cart-goods-item" v-for="(item,index) in cartGoods" :key="index">
       <div >
-        <img src="~assets/img/cart/tick.svg" :class="{active:active}" class="check-btn" @click="check(index)">
+        <img src="~assets/img/cart/tick.svg" :class="{active:isActive}" class="check-btn" @click="check(index)">
       </div>
       <img :src="item.showImg" alt  class="show-img"/>
       <div class="name">
@@ -13,36 +13,35 @@
           <span>x{{item.count}}</span>
         </div>
       </div>
-    </div>
+    </div> -->
+    <cart-goods-item v-for="(item,index) in cartGoods" 
+                      :key="index" 
+                      :item ="item"/>
   </div>
 </template>
 
 <script>
+  import CartGoodsItem from './CartGoodsItem.vue'
 export default {
   name: "CartGoods",
+  components: {
+    CartGoodsItem
+  },
   props: {
     cartGoods: {
       type: Array,
       default: []
-    },
-    active: {
-      type: Boolean,
-      default: false
     }
   },
-  methods: {
-    check(index){
-      this.$emit("check",index)
-    }
-  },
+ 
 };
 </script>
 
 <style lang="less" scoped>
 .cart-goods {
   width: 100vw;
-  
-  p {
+}
+  /* p {
     margin: 0;
   }
   .cart-goods-item {
@@ -92,5 +91,5 @@ export default {
 .active{
   background-color: #ff5777;
   border-radius: 50%;
-}
+} */
 </style>
